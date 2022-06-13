@@ -51,11 +51,49 @@ class PlaceFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
+        val searchPlaceEdit: EditText = view.findViewById(R.id.searchPlaceEdit)
+        val bgImageView: ImageView = view.findViewById(R.id.bgImageView)
+        val layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = layoutManager
+        adapter = PlaceAdapter(this,viewModel.placeList)
+        recyclerView.adapter = adapter
+        searchPlaceEdit.addTextChangedListener { editable ->
+            val content = editable.toString()
+            if (content.isNotEmpty()){
+                viewModel.searchPlaces(content)
+            } else {
+                recyclerView.visibility = View.GONE
+                bgImageView.visibility = View.VISIBLE
+                viewModel.placeList.clear()
+                adapter.notifyDataSetChanged()
+            }
+        }
+        viewModel.placeLiveData.observe(viewLifecycleOwner, Observer { result ->
+            val places = result.getOrNull()
+            println("+++++++++")
+            println(places)
+            if (places != null) {
+                recyclerView.visibility = View.VISIBLE
+                bgImageView.visibility = View.GONE
+                viewModel.placeList.clear()
+                viewModel.placeList.addAll(places)
+                adapter.notifyDataSetChanged()
+            } else {
+                Toast.makeText(activity, "未能查到任何地点", Toast.LENGTH_SHORT).show()
+                result.exceptionOrNull()?.printStackTrace()
+            }
+        })
+
+    }
+
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
         //如果当前Fragment属于MainActivity并且已有存储的城市数据,
         // 则获取并解析成Location对象，设置参数并跳转天气界面
         // (防止被天气界面嵌入导致无限循环跳转页面)
 //        if (activity is MainActivity && viewModel.value.isPlace)
-    }
+//    }
 
 //    override fun onActivityCreated(savedInstanceState: Bundle?) {
 //        super.onActivityCreated(savedInstanceState)

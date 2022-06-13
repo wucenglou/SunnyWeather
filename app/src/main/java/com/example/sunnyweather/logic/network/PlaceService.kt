@@ -11,9 +11,15 @@ interface PlaceService {
 //    @GET("api?unescape=1&version=v1&appid=858414&appsecret=EKCDLT4I")
 
 
+    /**
+     * 彩云天气api
+     */
     @GET("v2/place?token=${SunnyWeatherApplication.TOKEN}&lang=zh_CN")
     fun searchPlaces(@Query("query") query: String): Call<PlaceResponse>
 
+    /**
+     * 免费api
+     */
     @GET("api?unescape=1&version=v1&appid=${SunnyWeatherApplication.AppId}&appsecret=${SunnyWeatherApplication.AppSecret}")
     fun searchCity(@Query("city") query: String): Call<PlaceResponse>
 

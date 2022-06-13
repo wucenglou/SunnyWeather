@@ -9,7 +9,7 @@ class SunnyWeatherApplication : Application(){
         /**
          * 接口 token
          */
-        const val TOKEN = ""
+        const val TOKEN = "nEumjJ68yWkJ9j8l"
         const val AppId = "85841439"
         const val AppSecret = "EKCDLT4I"
 
