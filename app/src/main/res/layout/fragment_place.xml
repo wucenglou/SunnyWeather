@@ -17,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/colorPrimary" >
-
         <EditText
             android:id="@+id/searchPlaceEdit"
             android:layout_width="match_parent"
@@ -30,13 +29,12 @@
             android:paddingEnd="10dp"
             android:hint="输入地址"
             android:background="@drawable/search_bg" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/actionBarLayout"
-            android:visibility="gone" />
     </FrameLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/actionBarLayout"
+        android:visibility="gone" />
 </RelativeLayout>
