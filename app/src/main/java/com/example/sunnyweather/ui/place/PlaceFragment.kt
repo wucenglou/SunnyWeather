@@ -25,20 +25,20 @@ class PlaceFragment : Fragment() {
 //    }
     //延迟初始化recyclerView适配器
     private lateinit var adapter: PlaceAdapter
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var actionBarLayout: FrameLayout
-    private lateinit var searchPlaceEdit: EditText
-    private lateinit var bgImageView: ImageView
+//
+//    private lateinit var recyclerView: RecyclerView
+//    private lateinit var actionBarLayout: FrameLayout
+//    private lateinit var searchPlaceEdit: EditText
+//    private lateinit var bgImageView: ImageView
 //    private lateinit var mRootView: View
 
     //控件绑定
-    private fun initViews(view: View) {
-        bgImageView = view.findViewById(R.id.bgImageView)
-        searchPlaceEdit = view.findViewById(R.id.searchPlaceEdit)
-        actionBarLayout = view.findViewById(R.id.actionBarLayout)
-        recyclerView = view.findViewById(R.id.recyclerView)
-    }
+//    private fun initViews(view: View) {
+//        bgImageView = view.findViewById(R.id.bgImageView)
+//        searchPlaceEdit = view.findViewById(R.id.searchPlaceEdit)
+//        actionBarLayout = view.findViewById(R.id.actionBarLayout)
+//        recyclerView = view.findViewById(R.id.recyclerView)
+//    }
 
     //绑定布局资源
     override fun onCreateView(
@@ -78,6 +78,7 @@ class PlaceFragment : Fragment() {
                 bgImageView.visibility = View.GONE
                 viewModel.placeList.clear()
                 viewModel.placeList.addAll(places)
+//                viewModel.placeList.addAll(places)
                 adapter.notifyDataSetChanged()
             } else {
                 Toast.makeText(activity, "未能查到任何地点", Toast.LENGTH_SHORT).show()
