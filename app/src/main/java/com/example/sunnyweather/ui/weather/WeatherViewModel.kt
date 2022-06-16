@@ -11,7 +11,7 @@ class WeatherViewModel: ViewModel() {
 
     var locationLng = ""
 
-    val locationLat = ""
+    var locationLat = ""
 
     var placeName = ""
 
