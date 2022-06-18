@@ -70,13 +70,13 @@ object Repository {
         }
     }
 
-    fun refreshWeather(lng: String,lat: String) = fire(Dispatchers.IO) {
+    fun refreshWeather(lng: String, lat: String) = fire(Dispatchers.IO) {
         coroutineScope {
             val deferredRealtime = async {
                 SunnyWeatherNetwork.getRealtimeWeather(lng, lat)
             }
             val deferredDaily = async {
-                SunnyWeatherNetwork.getDailyWeather(lng,lat)
+                SunnyWeatherNetwork.getDailyWeather(lng, lat)
             }
             val realtimeResponse = deferredRealtime.await()
             val dailyResponse = deferredDaily.await()
@@ -94,12 +94,13 @@ object Repository {
         }
     }
 
-    private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) = liveData<Result<T>> (context){
-        val result = try {
-            block()
-        } catch (e: Exception) {
-            Result.failure<T>(e)
+    private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
+        liveData<Result<T>>(context) {
+            val result = try {
+                block()
+            } catch (e: Exception) {
+                Result.failure<T>(e)
+            }
+            emit(result)
         }
-        emit(result)
-    }
 }
