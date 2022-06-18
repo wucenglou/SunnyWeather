@@ -22,11 +22,14 @@ class PlaceAdapter(private val fragment: Fragment, private val placeList: List<P
 //        return ViewHolder(view)
         val holder = ViewHolder(view)
         holder.itemView.setOnClickListener {
+            // itemView父布局添加点击事件，以跳转天气界面
             val position = holder.adapterPosition
             val place = placeList[position]
+            println("+++++++++++")
+            println(place)
             val intent = Intent(parent.context, WeatherActivity::class.java).apply {
-//                putExtra("location_lng", place.location.lng)
-//                putExtra("location_lat", place.location.lat)
+                putExtra("location_lng", place.location.lng)
+                putExtra("location_lat", place.location.lat)
                 putExtra("place_name", place.name)
             }
             fragment.startActivity(intent)

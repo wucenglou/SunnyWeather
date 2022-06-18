@@ -7,7 +7,6 @@
     android:overScrollMode="never"
     android:visibility="invisible">
 
-<!--    ScrollView的内部只允许存在一个直接子布局-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -17,7 +16,7 @@
 
         <include layout="@layout/forecast" />
 
-        <include layout="@layout/life_index" />
+<!--        <include layout="@layout/life_index" />-->
 
     </LinearLayout>
 
